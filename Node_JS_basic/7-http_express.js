@@ -9,20 +9,19 @@ app.get('/', (req, res) => {
 });
 
 app.get('/students', (req, res) => {
-  const filePath = process.argv[2];
-
-  countStudents(filePath)
-    .then(result => {
-      const responseText = `This is the list of our students\n${JSON.stringify(result, null, 2)}`;
-      res.type('text').send(responseText);
+  res.setHeader('Content-Type', 'text/plain');
+  res.write('This is the list of our students\n');
+  countStudents(process.argv[2])
+    .then((data) => {
+      res.end(data);
     })
-    .catch(error => {
-      res.status(500).send(`Internal Server Error: ${error.message}`);
+    .catch((error) => {
+      res.end(error.message);
     });
 });
 
 app.listen(port, () => {
-  console.log(`Server is listening on port ${port}`);
+  console.log(`Example app listening at http://localhost:${port}`);
 });
 
 module.exports = app;
