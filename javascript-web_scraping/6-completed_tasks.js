@@ -16,7 +16,7 @@ request(url, function (error, response, body) {
       users.push(item.userId);
     }
   });
-  let result = {};
+  const result = {};
   users.forEach(item => {
     let counter = 0;
     content.forEach(element => {
