@@ -1,5 +1,5 @@
 #!/usr/bin/node
-// script that reads and prints the content of a file.
+// script that reads and prints the content of a file..
 
 const argvs = process.argv.slice(2);
 const filename = argvs[0];
